@@ -1,10 +1,24 @@
 //this file is empty
 .header{
   display: flex;
-  background-color: #4B565E;
 }
 
 .header-wrapper{
-height: 80px;
-  width: max-content;
+max-height: 128px;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-top{
+  display: flex;
+  height: 80px;
+  background-color: #4B565E;
+}
+
+.header-bottom{
+  height: 48px;
+  background-color: #F0BA4E;
+  max-width: 100%;
 }
