@@ -1,3 +1,5 @@
+@use '../styles.scss' as *;
+
 .header{
   display: flex;
 }
@@ -8,6 +10,7 @@ max-height: 100%;
 width: 1920px;
   display: flex;
   flex-direction: column;
+
 }
 
 .header-top{
@@ -24,7 +27,26 @@ width: 1920px;
     display: flex;
     align-items: center;
     gap: 39px;
+    color: white;
   }
+  &-info{
+    width: 685px;
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    padding-left: 40px;
+    &-call{
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      color: white;
+    }
+  }
+}
+
+.cart{
+  @include clear-button;
+  border: 2px #F0BA4E;
 }
 
 .header-bottom{
