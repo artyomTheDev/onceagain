@@ -1,12 +1,11 @@
-//this file is empty
 .header{
   display: flex;
 }
 
 .header-wrapper{
-max-height: 128px;
+max-height: 100%;
   max-width: 100%;
-  margin: 0 auto;
+width: 1920px;
   display: flex;
   flex-direction: column;
 }
@@ -15,6 +14,17 @@ max-height: 128px;
   display: flex;
   height: 80px;
   background-color: #4B565E;
+  &-wrapper{
+    max-width: 1440px;
+    display: flex;
+    margin: 0 auto;
+  }
+  &-description{
+    width: 755px;
+    display: flex;
+    align-items: center;
+    gap: 39px;
+  }
 }
 
 .header-bottom{
