@@ -10,20 +10,19 @@ max-height: 100%;
 width: 1920px;
   display: flex;
   flex-direction: column;
-
+  background-color: #4B565E;
 }
 
 .header-top{
   display: flex;
   height: 80px;
-  background-color: #4B565E;
+  margin: 0 auto;
+  justify-content: space-between;
   &-wrapper{
-    max-width: 1440px;
     display: flex;
-    margin: 0 auto;
+
   }
   &-description{
-    width: 755px;
     display: flex;
     align-items: center;
     gap: 39px;
@@ -67,7 +66,8 @@ display: flex;
   background-color: #F0BA4E;
   max-width: 100%;
   &-wrapper{
-    max-width: 1440px;
+    margin: 0 auto;
+    max-width: 1319px;
     height: 48px;
     display: flex;
     justify-content: space-between;
@@ -104,3 +104,11 @@ display: flex;
   margin: 20px auto;
 }
 
+.pages{
+  display: flex;
+  justify-content: flex-end;
+  width: 1319px;
+  margin: 0 auto;
+  gap: 10px;
+  color: #A1A0A0;
+}
