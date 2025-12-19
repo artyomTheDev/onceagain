@@ -2,12 +2,13 @@
 <div class="header-wrapper">
     <div class="header-top">
 <div class="header-top-wrapper">
-  <div class="header-top-description">
+  <nav class="header-top-description">
     <img class="logo" src="./assets/logo.svg" alt="">
-    <span>Главная</span>
-    <span>О компании</span>
-    <span>Каталог</span>
-  </div>
+    <span>{{ headerItem1 }}</span>
+    <span>{{ headerItem2 }}</span>
+    <span *ngIf="isShowCatalog">{{ headerItem3 }}</span>
+    <button (click)="isShowCatalog = !isShowCatalog">Скрыть/Показать каталог</button>
+  </nav>
   <div class="header-top-info">
 <div class="header-top-info-call">
   <img class="phone" src="./assets/phone.svg" alt="">
