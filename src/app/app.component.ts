@@ -26,17 +26,18 @@ export class AppComponent {
 
   isShowCatalog = true;
 
-  readonly headerItem1 = 'Главная';
+  isShowBanner = true;
 
-  readonly headerItem2 = 'О компании';
+  readonly aboutCompany = this.showMessage('О компании')
 
-  readonly headerItem3 = 'Каталог';
+  readonly headerItem1:string = 'Главная';
 
-  // showMessage(menuName) {
-  //
-  //   return menuName;
-  // }
-  //
-  // showMessage(headerItem2);
+  readonly headerItem2:string = 'О компании';
 
+  readonly headerItem3:string = 'Каталог';
+
+  showMessage(headerItem:string) {
+
+    return headerItem
+  }
 }

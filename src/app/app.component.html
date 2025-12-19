@@ -5,9 +5,10 @@
   <nav class="header-top-description">
     <img class="logo" src="./assets/logo.svg" alt="">
     <span>{{ headerItem1 }}</span>
-    <span>{{ headerItem2 }}</span>
+    <span>{{ aboutCompany }}</span>
     <span *ngIf="isShowCatalog">{{ headerItem3 }}</span>
     <button (click)="isShowCatalog = !isShowCatalog">Скрыть/Показать каталог</button>
+    <button (click)="isShowBanner = !isShowBanner">Скрыть/Показать баннер</button>
   </nav>
   <div class="header-top-info">
 <div class="header-top-info-call">
@@ -46,7 +47,7 @@
 </div>
   </div>
 </header>
-<img src="./assets/banner.svg" alt="">
+<img *ngIf = "isShowBanner" src="./assets/banner.svg" alt="">
 <div class="add">
   <img  src="assets/advert.svg" alt="">
 </div>
