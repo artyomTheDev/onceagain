@@ -9,6 +9,7 @@
     <span *ngIf="isShowCatalog">{{ headerItem3 }}</span>
     <button (click)="isShowCatalog = !isShowCatalog">Скрыть/Показать каталог</button>
     <button (click)="isShowBanner = !isShowBanner">Скрыть/Показать баннер</button>
+    <button (click)=changeMenuText()>Смена регистра</button>
   </nav>
   <div class="header-top-info">
 <div class="header-top-info-call">
@@ -29,11 +30,11 @@
   <div class="header-bottom-text">
     <div style="display: flex; align-items: center; gap: 10px">
       <img src="./assets/strings.svg" alt="">
-      Каталог</div>
-    <span>Стройматериалы</span>
-    <span>Инструменты</span>
-    <span>Электрика</span>
-    <span>Интерьер и одежда</span>
+      {{ menuItems[0] }}</div>
+    <span>{{ menuItems[1] }}</span>
+    <span>{{ menuItems[2] }}</span>
+    <span>{{ menuItems[3] }}</span>
+    <span>{{ menuItems[4] }}</span>
   </div>
   <div class="header-bottom-search">
     <input class="header-bottom-search-input" type="text" placeholder="Поиск, например Круг зачистной">

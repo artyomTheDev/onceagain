@@ -20,6 +20,10 @@ export class AppComponent {
 
   isShowBanner:boolean = true;
 
+  isUpperCase:boolean = true;
+
+  menuItems:string[] = ['Каталог', 'Стройматериалы', 'Инструменты', 'Электрика', 'Интерьер и одежда'];
+
   readonly newPages:number[] = [5, 4, 3, 2, 1];
 
   readonly aboutCompany:string = this.showMessage('О компании')
@@ -34,4 +38,11 @@ export class AppComponent {
 
     return headerItem
   }
+
+  changeMenuText(){
+this.menuItems = this.menuItems.map(
+  item => this.isUpperCase ? item.toLowerCase() : item.toUpperCase()
+);
+this.isUpperCase = !this.isUpperCase
+  };
 }
