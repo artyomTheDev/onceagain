@@ -10,6 +10,9 @@
     <button (click)="isShowCatalog = !isShowCatalog">Скрыть/Показать каталог</button>
     <button (click)="isShowBanner = !isShowBanner">Скрыть/Показать баннер</button>
     <button (click)=changeMenuText()>Смена регистра</button>
+    <button (click)="changeCounter()"> Прибавить единицу, но больше пяти не будет, хе-хе</button>
+    <span>{{ counter }}</span>
+    <button (click)=changeColor()> {{ colors[currentColorIndex] }}</button>
   </nav>
   <div class="header-top-info">
 <div class="header-top-info-call">

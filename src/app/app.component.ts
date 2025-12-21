@@ -1,9 +1,6 @@
 import {Component} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
-
-for(let i:number = 0; i < 5; i++){
-  console.log(i)
-}
+import {count} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -34,6 +31,12 @@ export class AppComponent {
 
   readonly headerItem3:string = 'Каталог';
 
+  public counter:number = 0;
+
+  currentColorIndex:number = 0;
+
+  colors:string[] = ['Красный', 'Жёлтый', 'Зелёный']
+
   showMessage(headerItem:string) {
 
     return headerItem
@@ -43,6 +46,21 @@ export class AppComponent {
 this.menuItems = this.menuItems.map(
   item => this.isUpperCase ? item.toLowerCase() : item.toUpperCase()
 );
-this.isUpperCase = !this.isUpperCase
+    this.isUpperCase = !this.isUpperCase
   };
+
+  changeCounter(){
+    if (this.counter < 5){
+      this.counter = this.counter + 1
+    } else {
+      this.counter = 0;
+    }
+  }
+  changeColor(){
+    if (this.currentColorIndex < 2){
+      this.currentColorIndex = this.currentColorIndex + 1;
+    } else {
+      this.currentColorIndex = 0;
+    }
+  }
 }
