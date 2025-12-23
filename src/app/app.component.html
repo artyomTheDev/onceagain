@@ -8,7 +8,6 @@
     <span>{{ aboutCompany }}</span>
     <span *ngIf="isShowCatalog">{{ headerItem3 }}</span>
     <button [class.dark-theme]="isDarkMode" (click)="isShowCatalog = !isShowCatalog">Скрыть/Показать каталог</button>
-    <button [class.dark-theme]="isDarkMode" (click)="isShowBanner = !isShowBanner">Скрыть/Показать баннер</button>
     <button [class.dark-theme]="isDarkMode" (click)=changeMenuText()>Смена регистра</button>
     <button [class.dark-theme]="isDarkMode" (click)="changeCounter()"> Прибавить единицу, но больше пяти не будет, хе-хе</button>
     <span>{{ counter }}</span>
@@ -53,11 +52,4 @@
   </div>
 </header>
 <router-outlet></router-outlet>
-<img *ngIf = "isShowBanner" src="./assets/banner.svg" alt="">
-<div class="add">
-  <img  src="assets/advert.svg" alt="">
-</div>
-<div class="pages">
-<span *ngFor = "let page of newPages">{{ page }}</span>
-</div>
 

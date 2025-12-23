@@ -1,11 +1,11 @@
-import {Component, HostBinding} from '@angular/core';
-import {NgForOf, NgIf} from "@angular/common";
-import {RouterOutlet} from "@angular/router";
+import { Component, HostBinding } from '@angular/core';
+import { NgIf } from "@angular/common";
+import { RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgIf, NgForOf, RouterOutlet],
+  imports: [ NgIf, RouterOutlet ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
