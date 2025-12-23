@@ -1,17 +1,20 @@
-import {Component} from '@angular/core';
+import {Component, HostBinding} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
-import {count} from "rxjs";
+import {RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgIf, NgForOf],
+  imports: [NgIf, NgForOf, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 
 export class AppComponent {
   title = 'mentoring-first-project';
+
+  @HostBinding('class.dark-theme')
+  isDarkMode:boolean = false;
 
   isShowCatalog:boolean = true;
 
@@ -62,5 +65,8 @@ this.menuItems = this.menuItems.map(
     } else {
       this.currentColorIndex = 0;
     }
+  }
+  toggleTheme(){
+    this.isDarkMode = !this.isDarkMode;
   }
 }

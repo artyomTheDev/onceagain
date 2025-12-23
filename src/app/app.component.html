@@ -7,12 +7,12 @@
     <span>{{ headerItem1 }}</span>
     <span>{{ aboutCompany }}</span>
     <span *ngIf="isShowCatalog">{{ headerItem3 }}</span>
-    <button (click)="isShowCatalog = !isShowCatalog">Скрыть/Показать каталог</button>
-    <button (click)="isShowBanner = !isShowBanner">Скрыть/Показать баннер</button>
-    <button (click)=changeMenuText()>Смена регистра</button>
-    <button (click)="changeCounter()"> Прибавить единицу, но больше пяти не будет, хе-хе</button>
+    <button [class.dark-theme]="isDarkMode" (click)="isShowCatalog = !isShowCatalog">Скрыть/Показать каталог</button>
+    <button [class.dark-theme]="isDarkMode" (click)="isShowBanner = !isShowBanner">Скрыть/Показать баннер</button>
+    <button [class.dark-theme]="isDarkMode" (click)=changeMenuText()>Смена регистра</button>
+    <button [class.dark-theme]="isDarkMode" (click)="changeCounter()"> Прибавить единицу, но больше пяти не будет, хе-хе</button>
     <span>{{ counter }}</span>
-    <button (click)=changeColor()> {{ colors[currentColorIndex] }}</button>
+    <button [class.dark-theme]="isDarkMode" (click)=changeColor()> {{ colors[currentColorIndex] }}</button>
   </nav>
   <div class="header-top-info">
 <div class="header-top-info-call">
@@ -25,6 +25,7 @@
       <span class="cart-text">Пусто</span>
     </button>
   </div>
+  <button [class.dark-theme]="isDarkMode" (click)=toggleTheme();>Переключить тему</button>
 </div>
 
   </div>
@@ -51,6 +52,7 @@
 </div>
   </div>
 </header>
+<router-outlet></router-outlet>
 <img *ngIf = "isShowBanner" src="./assets/banner.svg" alt="">
 <div class="add">
   <img  src="assets/advert.svg" alt="">
