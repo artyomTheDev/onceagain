@@ -17,6 +17,3 @@ export const routes: Routes = [
     component: UsersListComponent
   },
 ];
-
-//in future here will be
-//like "ProvidedIn:root" on other pages

@@ -4,12 +4,15 @@
 <div class="header-top-wrapper">
   <nav class="header-top-description">
     <img class="logo" src="./assets/logo.svg" alt="">
-    <span>{{ headerItem1 }}</span>
+    <a [routerLink]="['main-page']">{{ headerItem1 }}</a>
     <span>{{ aboutCompany }}</span>
     <span *ngIf="isShowCatalog">{{ headerItem3 }}</span>
     <button [class.dark-theme]="isDarkMode" (click)="isShowCatalog = !isShowCatalog">Скрыть/Показать каталог</button>
     <button [class.dark-theme]="isDarkMode" (click)=changeMenuText()>Смена регистра</button>
     <button [class.dark-theme]="isDarkMode" (click)="changeCounter()"> Прибавить единицу, но больше пяти не будет, хе-хе</button>
+    <a [routerLink]="['users']">
+      Пользователи
+    </a>
     <span>{{ counter }}</span>
     <button [class.dark-theme]="isDarkMode" (click)=changeColor()> {{ colors[currentColorIndex] }}</button>
   </nav>

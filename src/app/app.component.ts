@@ -1,11 +1,11 @@
 import { Component, HostBinding } from '@angular/core';
 import { NgIf } from "@angular/common";
-import { RouterOutlet } from "@angular/router";
+import {RouterLink, RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ NgIf, RouterOutlet ],
+  imports: [NgIf, RouterOutlet, RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -18,19 +18,13 @@ export class AppComponent {
 
   isShowCatalog:boolean = true;
 
-  isShowBanner:boolean = true;
-
   isUpperCase:boolean = true;
 
   menuItems:string[] = ['Каталог', 'Стройматериалы', 'Инструменты', 'Электрика', 'Интерьер и одежда'];
 
-  readonly newPages:number[] = [5, 4, 3, 2, 1];
-
   readonly aboutCompany:string = this.showMessage('О компании')
 
   readonly headerItem1:string = 'Главная';
-
-  readonly headerItem2:string = 'О компании';
 
   readonly headerItem3:string = 'Каталог';
 
