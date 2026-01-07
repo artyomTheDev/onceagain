@@ -13,6 +13,9 @@
     <a [routerLink]="['users']">
       Пользователи
     </a>
+    <a [routerLink]="['todos']">
+      Задачи
+    </a>
     <span>{{ counter }}</span>
     <button [class.dark-theme]="isDarkMode" (click)=changeColor()> {{ colors[currentColorIndex] }}</button>
   </nav>

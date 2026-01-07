@@ -1,9 +1,8 @@
-import {Component, inject, Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {Component, inject, } from "@angular/core";
 import {NgForOf} from "@angular/common";
 import {User} from "./user.interface";
-
-const consoleResponse = (response: any) => console.log(response)
+import {UsersApiService} from "../users-api.service";
+import {UserCardComponent} from "./user-card/user-card.component";
 
 @Component({
   selector: 'app-users-list',
@@ -11,16 +10,17 @@ const consoleResponse = (response: any) => console.log(response)
   standalone: true,
   styleUrl: 'users-list.component.scss',
   imports: [
-    NgForOf
+    NgForOf,
+    UserCardComponent
   ]
 })
 
 export class UsersListComponent{
-    readonly apiService = inject(HttpClient);
-    users:User[] =[];
+    readonly usersApiService = inject(UsersApiService);
+    users:User[] = [];
 
     constructor() {
-        this.apiService.get<User[]>('https://jsonplaceholder.typicode.com/users').subscribe(
+        this.usersApiService.getUsers().subscribe(
           (response: any) => {
             this.users = response;
             console.log(this.users)
