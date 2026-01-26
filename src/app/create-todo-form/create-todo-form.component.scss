@@ -1,0 +1,13 @@
+@use '@angular/material' as mat;
+
+.form-wrapper{
+  display: flex;
+  justify-content: center;
+}
+
+.todo-form{
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 400px;
+}

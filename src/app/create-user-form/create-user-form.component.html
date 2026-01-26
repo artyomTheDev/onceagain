@@ -1,0 +1,35 @@
+<div class="create-user">
+
+  <form class="create-user-form" [formGroup]="form" (ngSubmit)="submitForm()">
+    <p>Форма создания пользователей</p>
+    <p>Имя пользователя:</p>
+    <input formControlName="name" type="text">
+    <div *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)" class="alert">
+      <div *ngIf="form.controls['name'].errors">
+        Тут ошибочка вышла
+      </div>
+    </div>
+    <p>Адрес электронной почты:</p>
+    <input formControlName="email" type="text">
+    <div *ngIf="form.controls['email'].invalid && (form.controls['email'].dirty || form.controls['email'].touched)" class="alert">
+      <div *ngIf="form.controls['email'].errors">
+        Тут ошибочка вышла
+      </div>
+    </div>
+    <p>Ссылка на сайт:</p>
+    <input formControlName="website" type="text">
+    <div *ngIf="form.controls['website'].invalid && (form.controls['website'].dirty || form.controls['website'].touched)" class="alert">
+      <div *ngIf="form.controls['website'].errors">
+        Тут ошибочка вышла
+      </div>
+    </div>
+    <p>Название компании:</p>
+    <input formControlName="companyName" type="text">
+    <div *ngIf="form.controls['companyName'].invalid && (form.controls['companyName'].dirty || form.controls['companyName'].touched)" class="alert">
+      <div *ngIf="form.controls['companyName'].errors">
+        Тут ошибочка вышла
+      </div>
+    </div>
+    <button type="submit" [disabled]="form.invalid">Создать пользователя</button>
+  </form>
+</div>

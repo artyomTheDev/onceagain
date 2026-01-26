@@ -1,0 +1,5 @@
+<div class="email-cards">
+  <div class="email-card"  *ngFor="let notification of notifications">
+    <app-notifications [notification] = 'notification' (readMessage)="readMessage($event)"></app-notifications>
+  </div>
+</div>
