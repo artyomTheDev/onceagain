@@ -1,8 +1,16 @@
-<div>
-  <h3>{{ user.name }}</h3>
-  <p>📧 {{ user.email }}</p>
-  <p>📞 {{ user.phone }}</p>
-  <p>🌐 {{ user.website }}</p>
-  <button (click)= "onDeleteUser(user.id)">Удалить пользователя</button>
-</div>
-
+<mat-card shadowbox>
+  <mat-card-header>
+    USER INFO
+  </mat-card-header>
+  <mat-card-title> Имя пользователя: {{ user.name | customUpperCase }}</mat-card-title>
+  <mat-card-content>
+    <p brown>📧 {{ user.email }}</p>
+    <p brown>📞 {{ user.website }}</p>
+    <p brown>🌐 {{ user.company.name }}</p>
+    <p brown> {{ user.phone | deleteDash }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button brown (click)= "onDeleteUser(user.id)" mat-button="elevated">Удалить пользователя</button>
+    <button brown (click)= "openDialog()" mat-button="elevated">Редактировать пользователя</button>
+  </mat-card-actions>
+</mat-card>

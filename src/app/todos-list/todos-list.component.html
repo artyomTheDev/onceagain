@@ -1,5 +1,6 @@
-<span>Это компонент списка задач, ожидайте апедейта!</span>
+<app-create-todo-form (createTodo)="createTodo($event)"></app-create-todo-form>
 <div class="todo-cards">
-  <div class="todo-card">
+  <div class="todo-card" *ngFor="let todo of TodosService.todos$ | async">
+<app-todo-card [todo] = 'todo' (deleteTodo)="deleteTodo($event)" (editTodo)="editTodo($event)"></app-todo-card>
   </div>
 </div>

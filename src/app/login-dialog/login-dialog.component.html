@@ -1,0 +1,9 @@
+<div class="dialog-wrapper">
+  <h1> {{ this.data.title }}</h1>
+  <p>Введите имя для отображения:</p>
+  <input matInput type="text" [(ngModel)]="displayName" )]>
+<div class="choices">
+  <button mat-button (click)="loginAsAdmin()">Админ</button>
+  <button mat-button (click)="loginAsUser()">Пользователь</button>
+</div>
+</div>

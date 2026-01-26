@@ -1,0 +1,37 @@
+<form class="edit-user-dialog" [formGroup]="editUserForm" (ngSubmit)="submitForm()">
+  <p>Имя пользователя:</p>
+  <input formControlName='name' type="text">
+  <div *ngIf="editUserForm.controls['name'].invalid && (editUserForm.controls['name'].dirty || editUserForm.controls['name'].touched)" class="alert">
+    <div *ngIf="editUserForm.controls['name'].errors">
+      Тут ошибочка вышла
+    </div>
+  </div>
+  <p>Адрес электронной почты:</p>
+  <input formControlName="email" type="text">
+  <div *ngIf="editUserForm.controls['email'].invalid && (editUserForm.controls['email'].dirty || editUserForm.controls['email'].touched)" class="alert">
+    <div *ngIf="editUserForm.controls['email'].errors">
+      Тут ошибочка вышла
+    </div>
+  </div>
+  <p>Ссылка на сайт:</p>
+  <input formControlName="website" type="text">
+  <div *ngIf="editUserForm.controls['website'].invalid && (editUserForm.controls['website'].dirty || editUserForm.controls['website'].touched)" class="alert">
+    <div *ngIf="editUserForm.controls['website'].errors">
+      Тут ошибочка вышла
+    </div>
+  </div>
+  <div formGroupName="company">
+    <p>Название компании:</p>
+    <input formControlName="name" type="text">
+
+    <div *ngIf="editUserForm.get('company.name')?.invalid &&
+              (editUserForm.get('company.name')?.dirty ||
+               editUserForm.get('company.name')?.touched)"
+         class="alert">
+      <div *ngIf="editUserForm.get('company.name')?.errors?.['required']">
+        Название компании обязательно
+      </div>
+    </div>
+  </div>
+  <button type="submit" [mat-dialog-close]="userWithUpdatedFields" [disabled]="editUserForm.invalid">Создать пользователя</button>
+</form>

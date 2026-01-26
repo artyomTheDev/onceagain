@@ -8,8 +8,9 @@
     <span>{{ aboutCompany }}</span>
     <span *ngIf="isShowCatalog">{{ headerItem3 }}</span>
     <button [class.dark-theme]="isDarkMode" (click)="isShowCatalog = !isShowCatalog">Скрыть/Показать каталог</button>
-    <button [class.dark-theme]="isDarkMode" (click)=changeMenuText()>Смена регистра</button>
-    <button [class.dark-theme]="isDarkMode" (click)="changeCounter()"> Прибавить единицу, но больше пяти не будет, хе-хе</button>
+    <div>{{ date | date:'medium' }}</div>
+    <button mat-button style="color:#F0BA4E") (click)="openDialog()">Войти</button>
+    <a [routerLink]="['admin']">Админ-панель</a>
     <a [routerLink]="['users']">
       Пользователи
     </a>
@@ -20,12 +21,12 @@
     <button [class.dark-theme]="isDarkMode" (click)=changeColor()> {{ colors[currentColorIndex] }}</button>
   </nav>
   <div class="header-top-info">
-<div class="header-top-info-call">
-  <img class="phone" src="./assets/phone.svg" alt="">
-  <span class="number">+7 (965) 084-29-29</span>
+    <div class="header-top-info-call">
+      <img class="phone" src="./assets/phone.svg" alt="">
+      <span class="number">+7 (965) 084-29-29</span>
 </div>
     <img class="heart" src="./assets/heart.svg" alt="">
-    <button class="cart">
+    <button class="cart" shadow>
       <img src="./assets/cart.svg" alt="">
       <span class="cart-text">Пусто</span>
     </button>
@@ -45,6 +46,9 @@
     <span>{{ menuItems[3] }}</span>
     <span>{{ menuItems[4] }}</span>
   </div>
+  <a [routerLink]="['email']">
+    Почта
+  </a>
   <div class="header-bottom-search">
     <input class="header-bottom-search-input" type="text" placeholder="Поиск, например Круг зачистной">
     <a href="./assets/lupa.svg"></a>

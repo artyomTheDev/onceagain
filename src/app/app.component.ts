@@ -1,16 +1,25 @@
-import { Component, HostBinding } from '@angular/core';
-import { NgIf } from "@angular/common";
+import {Component, HostBinding, inject} from '@angular/core';
+import {DatePipe, NgIf} from "@angular/common";
 import {RouterLink, RouterOutlet} from "@angular/router";
+import {ShadowCartDirective} from "./directives/shadow-cart.directive";
+import {MatDialog} from "@angular/material/dialog";
+import {LoginDialogComponent} from "./login-dialog/login-dialog.component";
+import {MatButton} from "@angular/material/button";
+import {AuthService} from "./auth/auth.service";
+import {LoginResult} from "./login-dialog/login-result.interface";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgIf, RouterOutlet, RouterLink],
+  imports: [NgIf, RouterOutlet, RouterLink, DatePipe, ShadowCartDirective, MatButton],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 
 export class AppComponent {
+  dialog = inject(MatDialog);
+  authService = inject(AuthService);
+
   title = 'mentoring-first-project';
 
   @HostBinding('class.dark-theme')
@@ -33,6 +42,8 @@ export class AppComponent {
   currentColorIndex:number = 0;
 
   colors:string[] = ['Красный', 'Жёлтый', 'Зелёный']
+
+  public date:any = new Date().getTime();
 
   showMessage(headerItem:string) {
 
@@ -62,5 +73,21 @@ this.menuItems = this.menuItems.map(
   }
   toggleTheme(){
     this.isDarkMode = !this.isDarkMode;
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(LoginDialogComponent, {
+      data: {
+        title: 'Выберите тип входа',
+      },
+      height: '100px',
+      width: '300px'
+    });
+    dialogRef.afterClosed().subscribe((result: LoginResult) => {
+      if (result) {
+        this.authService.login(result)
+        console.log(result)
+      }
+    });
   }
 }

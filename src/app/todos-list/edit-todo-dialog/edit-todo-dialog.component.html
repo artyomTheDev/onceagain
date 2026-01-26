@@ -1,0 +1,22 @@
+
+<div class="form-wrapper">
+  <h1 style=" font-size: xxx-large"> Task Editor </h1>
+  <form style="display: flex; flex-direction: column" class="todo-form" [formGroup]="editTodoForm" (ngSubmit)="submitForm()">
+    <mat-form-field>
+      <mat-label>ID ответственного:</mat-label>
+      <input matInput type="number" formControlName="userId">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Описание задачи</mat-label>
+      <input matInput type="text" formControlName="title">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Статус задачи</mat-label>
+      <mat-select formControlName="completed">
+        <mat-option [value]="true">Выполнена</mat-option>
+        <mat-option [value]="false">Не выполнена</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button class="form-button" mat-flat-button [mat-dialog-close]="todoWithUpdatedFields">Принять</button>
+  </form>
+</div>
