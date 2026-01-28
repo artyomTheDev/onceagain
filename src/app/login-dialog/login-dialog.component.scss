@@ -1,10 +1,13 @@
 .dialog-wrapper{
   display: flex;
   flex-direction: column;
-  width: 300px;
+
+  height: max-content;
+  justify-content: center;
 }
 
 .choices{
   display: flex;
   justify-content: center;
+  gap: 20px;
 }

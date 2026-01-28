@@ -1,4 +1,6 @@
+type UserRole = 'admin' | 'user' | 'guest'
+
 export interface LoginResult {
-  isAdmin: boolean;
+  role: UserRole;
   displayName?: string;
 }

@@ -4,6 +4,8 @@ import { MatButton } from "@angular/material/button";
 import { LoginResult } from "./login-result.interface";
 import {MatInput} from "@angular/material/input";
 import { FormsModule } from "@angular/forms";
+import {ShadowBoxDirective} from "../directives/shadow-box.directive";
+import {RedDirective} from "../directives/red.directive";
 
 @Component({
   selector: 'app-login-dialog',
@@ -13,7 +15,9 @@ import { FormsModule } from "@angular/forms";
   imports: [
     MatButton,
     MatInput,
-    FormsModule
+    FormsModule,
+    ShadowBoxDirective,
+    RedDirective
   ]
 })
 
@@ -24,13 +28,22 @@ export class LoginDialogComponent {
 
   loginAsAdmin(): void {
     this.dialogRef.close({
-      isAdmin: true,
+      role: "admin",
       displayName: this.displayName
     })
   }
 
   loginAsUser(): void {
-    const result: LoginResult = { isAdmin:false }
-    this.dialogRef.close(result)
+    this.dialogRef.close({
+      role: "user",
+      displayName: this.displayName
+    })
+  }
+
+  loginAsGuest(): void {
+    this.dialogRef.close({
+      role: "guest",
+      displayName: this.displayName
+    })
   }
 }

@@ -4,6 +4,7 @@ import {MainPageComponent} from "./main-page/main-page.component";
 import {TodosListComponent} from "./todos-list/todos-list.component";
 import {EmailComponent} from "./email/email.component";
 import {AdminComponent} from "./admin/admin.component";
+import {adminGuard} from "./auth/guards/admin.guard";
 
 export const routes: Routes = [
   {
@@ -17,11 +18,13 @@ export const routes: Routes = [
   },
   {
     path: 'users',
-    component: UsersListComponent
+    component: UsersListComponent,
+    canActivate: [adminGuard]
   },
   {
     path: 'todos',
-    component: TodosListComponent
+    component: TodosListComponent,
+    canActivate: [adminGuard]
   },
   {
     path: 'email',
@@ -29,6 +32,7 @@ export const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminComponent
+    component: AdminComponent,
+    canActivate: [adminGuard]
   }
 ];

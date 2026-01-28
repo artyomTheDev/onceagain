@@ -9,8 +9,10 @@
     <span *ngIf="isShowCatalog">{{ headerItem3 }}</span>
     <button [class.dark-theme]="isDarkMode" (click)="isShowCatalog = !isShowCatalog">Скрыть/Показать каталог</button>
     <div>{{ date | date:'medium' }}</div>
-    <button mat-button style="color:#F0BA4E") (click)="openDialog()">Войти</button>
-    <a [routerLink]="['admin']">Админ-панель</a>
+    <button mat-button style="color:#F0BA4E" *ngIf="(user$ | async)?.role === null" (click)="openDialog()">Войти</button>
+    <span *ngIf="(user$ | async)?.displayName"> {{ (user$ | async)?.displayName || '' }}</span>
+    <button mat-button style="color:#F0BA4E" *ngIf="(user$ | async)?.role" (click)="authService.logout()">Выйти</button>
+    <a *ngIf="(user$ | async)?.role === 'admin'" [routerLink]="['admin']">Админ-панель</a>
     <a [routerLink]="['users']">
       Пользователи
     </a>

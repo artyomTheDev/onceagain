@@ -11,17 +11,17 @@ export class AuthService {
 
   public login(data: LoginResult):void {
     this.currentUser$.next({
-      isAdmin:data.isAdmin,
+      role: data.role ,
       displayName: data.displayName
     })
   }
 
   loginAsAdmin():void {
-    this.currentUser$.next({ isAdmin: true })
+    this.currentUser$.next({ role: "admin" })
   }
 
   loginAsUser():void {
-    this.currentUser$.next({ isAdmin: false })
+    this.currentUser$.next({ role: "user" })
   }
 
   logout():void {
@@ -29,10 +29,14 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
-    return this.currentUser$.value?.isAdmin === true;
+    return this.currentUser$.value?.role === "admin";
   }
 
   isLoggedIn(): boolean {
     return this.currentUser$.value !== null;
+  }
+
+  getCurrentUser(): AuthUser | null {
+    return this.currentUser$.value
   }
 }

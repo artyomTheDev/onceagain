@@ -1,5 +1,5 @@
 import {Component, HostBinding, inject} from '@angular/core';
-import {DatePipe, NgIf} from "@angular/common";
+import {AsyncPipe, DatePipe, NgIf} from "@angular/common";
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {ShadowCartDirective} from "./directives/shadow-cart.directive";
 import {MatDialog} from "@angular/material/dialog";
@@ -11,7 +11,7 @@ import {LoginResult} from "./login-dialog/login-result.interface";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgIf, RouterOutlet, RouterLink, DatePipe, ShadowCartDirective, MatButton],
+  imports: [NgIf, RouterOutlet, RouterLink, DatePipe, ShadowCartDirective, MatButton, AsyncPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -19,6 +19,7 @@ import {LoginResult} from "./login-dialog/login-result.interface";
 export class AppComponent {
   dialog = inject(MatDialog);
   authService = inject(AuthService);
+  user$ = this.authService.user$
 
   title = 'mentoring-first-project';
 
@@ -75,13 +76,17 @@ this.menuItems = this.menuItems.map(
     this.isDarkMode = !this.isDarkMode;
   }
 
+  currentInfoAboutUser() {
+    console.log(this.authService.user$)
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginDialogComponent, {
       data: {
         title: 'Выберите тип входа',
       },
-      height: '100px',
-      width: '300px'
+      height: '400px',
+      width: '400px'
     });
     dialogRef.afterClosed().subscribe((result: LoginResult) => {
       if (result) {

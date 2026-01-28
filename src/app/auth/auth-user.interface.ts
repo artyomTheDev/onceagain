@@ -1,4 +1,6 @@
+export type UserRole = 'admin' | 'user' | 'guest'
+
 export interface AuthUser {
-  isAdmin: boolean ;
+  role: UserRole;
   displayName?: string;
 }
