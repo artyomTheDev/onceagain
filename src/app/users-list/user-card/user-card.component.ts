@@ -4,13 +4,15 @@ import {EditUserDialogComponent} from "../edit-user-dialog/edit-user-dialog.comp
 import {CustomUpperCasePipe} from "../../pipes/upper-case.pipe";
 import {DeleteDashPipe} from "../../pipes/deleteDash.pipe";
 import {RedDirective} from "../../directives/red.directive";
-import {MatAnchor, MatButton} from "@angular/material/button";
+import { MatButton} from "@angular/material/button";
 import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
 import {ShadowBoxDirective} from "../../directives/shadow-box.directive";
+import {AuthService} from "../../auth/auth.service";
+import {AsyncPipe, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-user-card',
-  imports: [CustomUpperCasePipe, DeleteDashPipe, RedDirective, MatButton, MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions, ShadowBoxDirective],
+  imports: [CustomUpperCasePipe, DeleteDashPipe, RedDirective, MatButton, MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions, ShadowBoxDirective, NgIf, AsyncPipe],
   standalone: true,
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss'
@@ -25,6 +27,7 @@ export class UserCardComponent {
   editUser = new EventEmitter<any>();
 
   readonly dialog = inject(MatDialog);
+  readonly user$ = inject(AuthService).user$
 
   openDialog(): void {
     const dialogRef = this.dialog.open(EditUserDialogComponent, {

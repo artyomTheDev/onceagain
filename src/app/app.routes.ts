@@ -4,7 +4,7 @@ import {MainPageComponent} from "./main-page/main-page.component";
 import {TodosListComponent} from "./todos-list/todos-list.component";
 import {EmailComponent} from "./email/email.component";
 import {AdminComponent} from "./admin/admin.component";
-import {adminGuard} from "./auth/guards/admin.guard";
+import {roleGuard} from "./auth/guards/role.guard";
 
 export const routes: Routes = [
   {
@@ -19,12 +19,12 @@ export const routes: Routes = [
   {
     path: 'users',
     component: UsersListComponent,
-    canActivate: [adminGuard]
+    canActivate: [roleGuard(['admin', 'user'])]
   },
   {
     path: 'todos',
     component: TodosListComponent,
-    canActivate: [adminGuard]
+    canActivate: [roleGuard(['admin', 'user'])]
   },
   {
     path: 'email',
@@ -33,6 +33,6 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [adminGuard]
+    canActivate: [roleGuard(['admin'])]
   }
 ];
