@@ -7,6 +7,10 @@
   <p>📞 {{ todo.title | sliceTextPipe}}</p>
   <p>Статус:</p>
   <p>🌐 {{ todo.completed ? 'Выполнена' : 'Не выполнена' }}</p>
-  <button (click)= "onDeleteTodo(todo.id)">Удалить задачу</button>
-  <button (click)= "onEditTodo()">Редактировать задачу</button>
+  <div *ngIf="(user$ | async)?.role === 'admin'">
+    <button (click)= "onDeleteTodo(todo.id)">Удалить задачу</button>
+    <button (click)= "onEditTodo()">Редактировать задачу</button>
+    <button (click)= "toggleTodo()">Сменить статус задачи</button>
+  </div>
+
 </div>
