@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {TodosApiService} from "./todos-api.service";
 import {TodoCardComponent} from "./todo-card/todo-card.component";
@@ -29,7 +29,7 @@ export interface Todo {
   styleUrl: './todos-list.component.scss'
 })
 
-export class TodosListComponent {
+export class TodosListComponent implements OnInit{
   readonly TodosApiService = inject(TodosApiService);
   readonly user$ = inject(AuthService).user$
   private store = inject(Store);
@@ -40,6 +40,10 @@ export class TodosListComponent {
     this.TodosApiService.getTodos().subscribe(
       (response: any) => this.store.dispatch(TodosActions.set({ todos: response }))
     )
+  }
+
+  ngOnInit() {
+    this.store.dispatch(TodosActions.load())
   }
 
   public deleteTodo(id: number):void {

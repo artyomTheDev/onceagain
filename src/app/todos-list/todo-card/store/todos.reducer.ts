@@ -1,6 +1,7 @@
 import {Todo} from "../../todos-list.component";
 import {createReducer, on} from "@ngrx/store";
 import {TodosActions} from "./todos.actions";
+import {state} from "@angular/animations";
 
 const TODOS_STATUS = {
   idle: 'idle',
@@ -63,4 +64,15 @@ export const todosReducer = createReducer(
     status: TODOS_STATUS.loading,
     error: null
   })),
+  on(TodosActions.loadSuccess, (state, payload) => ({
+    ...state,
+    status: TODOS_STATUS.loaded,
+    error: null,
+    entities: payload.todos
+  })),
+  on(TodosActions.loadFailure, (state, payload) => ({
+    ...state,
+    status: TODOS_STATUS.error,
+    error: payload.error
+  }))
 );

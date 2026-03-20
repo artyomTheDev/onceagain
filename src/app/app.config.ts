@@ -8,6 +8,8 @@ import {provideAnimationsAsync} from '@angular/platform-browser/animations/async
 import {provideStore} from '@ngrx/store';
 import { usersReducer } from "./users-list/store/user.reducer";
 import { todosReducer } from "./todos-list/todo-card/store/todos.reducer";
+import {provideEffects} from "@ngrx/effects";
+import {TodosEffects} from "./todos-list/todo-card/store/todos.effects";
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
@@ -17,6 +19,7 @@ export const appConfig: ApplicationConfig = {
       users: usersReducer,
       todos: todosReducer,
     }),
+    provideEffects(TodosEffects),
   provideStoreDevtools({ maxAge:25 })
   ],
 };
