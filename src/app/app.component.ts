@@ -7,6 +7,7 @@ import {LoginDialogComponent} from "./login-dialog/login-dialog.component";
 import {MatButton} from "@angular/material/button";
 import {AuthService} from "./auth/auth.service";
 import {LoginResult} from "./login-dialog/login-result.interface";
+import {tap} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -44,7 +45,7 @@ export class AppComponent {
 
   colors:string[] = ['Красный', 'Жёлтый', 'Зелёный']
 
-  public date:any = new Date().getTime();
+  public date: number = new Date().getTime();
 
   showMessage(headerItem:string) {
 
@@ -76,10 +77,6 @@ this.menuItems = this.menuItems.map(
     this.isDarkMode = !this.isDarkMode;
   }
 
-  currentInfoAboutUser() {
-    console.log(this.authService.user$)
-  }
-
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginDialogComponent, {
       data: {
@@ -88,11 +85,9 @@ this.menuItems = this.menuItems.map(
       height: '400px',
       width: '400px'
     });
-    dialogRef.afterClosed().subscribe((result: LoginResult) => {
-      if (result) {
-        this.authService.login(result)
-        console.log(result)
-      }
-    });
-  }
+    dialogRef.afterClosed().pipe(
+      tap((result: LoginResult | undefined) => {
+        if (result) this.authService.login(result);
+      })
+    )
 }
