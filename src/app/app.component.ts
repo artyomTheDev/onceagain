@@ -18,66 +18,67 @@ import {tap} from "rxjs";
 })
 
 export class AppComponent {
-  dialog = inject(MatDialog);
-  authService = inject(AuthService);
-  user$ = this.authService.user$
+  dialog = inject<MatDialog>(MatDialog);
+  authService = inject<AuthService>(AuthService);
+  user$ = this.authService.user$;
 
   title = 'mentoring-first-project';
 
   @HostBinding('class.dark-theme')
-  isDarkMode:boolean = false;
+  public isDarkMode: boolean = false;
 
-  isShowCatalog:boolean = true;
+  public isShowCatalog: boolean = true;
 
-  isUpperCase:boolean = true;
+  public isUpperCase: boolean = true;
 
-  menuItems:string[] = ['Каталог', 'Стройматериалы', 'Инструменты', 'Электрика', 'Интерьер и одежда'];
+  public menuItems: string[] = ['Каталог', 'Стройматериалы', 'Инструменты', 'Электрика', 'Интерьер и одежда'];
 
-  readonly aboutCompany:string = this.showMessage('О компании')
+  readonly aboutCompany: string = this.showMessage('О компании');
 
-  readonly headerItem1:string = 'Главная';
+  readonly headerItem1: string = 'Главная';
 
-  readonly headerItem3:string = 'Каталог';
+  readonly headerItem3: string = 'Каталог';
 
-  public counter:number = 0;
+  public counter: number = 0;
 
-  currentColorIndex:number = 0;
+  public currentColorIndex: number = 0;
 
-  colors:string[] = ['Красный', 'Жёлтый', 'Зелёный']
+  public colors: string[] = ['Красный', 'Жёлтый', 'Зелёный'];
 
   public date: number = new Date().getTime();
 
-  showMessage(headerItem:string) {
-
-    return headerItem
-  }
-
-  changeMenuText(){
-this.menuItems = this.menuItems.map(
-  item => this.isUpperCase ? item.toLowerCase() : item.toUpperCase()
-);
-    this.isUpperCase = !this.isUpperCase
+  public showMessage(headerItem: string): string {
+    return headerItem;
   };
 
-  changeCounter(){
-    if (this.counter < 5){
+  public changeMenuText(): void {
+    this.menuItems = this.menuItems.map(
+      item => this.isUpperCase ? item.toLowerCase() : item.toUpperCase()
+    );
+    this.isUpperCase = !this.isUpperCase
+  }
+
+  public changeCounter(): void {
+    if (this.counter < 5) {
       this.counter = this.counter + 1
     } else {
       this.counter = 0;
     }
   }
-  changeColor(){
-    if (this.currentColorIndex < 2){
+
+  public changeColor(): void {
+    if (this.currentColorIndex < 2) {
       this.currentColorIndex = this.currentColorIndex + 1;
     } else {
       this.currentColorIndex = 0;
     }
-  }
-  toggleTheme(){
-    this.isDarkMode = !this.isDarkMode;
-  }
+  };
 
-  openDialog(): void {
+  public toggleTheme(): void {
+    this.isDarkMode = !this.isDarkMode;
+  };
+
+  public openDialog(): void {
     const dialogRef = this.dialog.open(LoginDialogComponent, {
       data: {
         title: 'Выберите тип входа',
@@ -89,5 +90,6 @@ this.menuItems = this.menuItems.map(
       tap((result: LoginResult | undefined) => {
         if (result) this.authService.login(result);
       })
-    )
+    ).subscribe()
+  };
 }
