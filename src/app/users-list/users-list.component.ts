@@ -1,12 +1,13 @@
-import {Component, inject } from "@angular/core";
-import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
-import {UsersApiService} from "../users-api.service";
-import {UserCardComponent} from "./user-card/user-card.component";
-import {CreateUserFormComponent} from "../create-user-form/create-user-form.component";
-import {AuthService} from "../auth/auth.service";
-import {Store} from "@ngrx/store";
-import {UsersActions} from "./store/users.actions";
-import {selectUsersEntities} from "./store/user.selectors";
+import { Component, inject } from "@angular/core";
+import { AsyncPipe, NgForOf, NgIf } from "@angular/common";
+import { UsersApiService } from "../users-api.service";
+import { UserCardComponent } from "./user-card/user-card.component";
+import { CreateUserFormComponent } from "../create-user-form/create-user-form.component";
+import { AuthService } from "../auth/auth.service";
+import { Store } from "@ngrx/store";
+import { UsersActions } from "./store/users.actions";
+import { selectUsersEntities } from "./store/user.selectors";
+import { User } from "./user.interface";
 
 @Component({
   selector: 'app-users-list',
@@ -30,31 +31,31 @@ export class UsersListComponent {
   protected users$ = this.store.select(selectUsersEntities);
 
   constructor() {
-    this.usersApiService.getUsers().subscribe((response: any): void => {
-        this.store.dispatch(UsersActions.set({users: response}))
+    this.usersApiService.getUsers().subscribe((response: User[]): void => {
+        this.store.dispatch(UsersActions.set({ users: response }))
       }
     )
   }
 
   public deleteUser(id: number): void {
-    this.store.dispatch(UsersActions.delete({id}))
+    this.store.dispatch(UsersActions.delete({ id }))
   }
 
-  public createUser(formData: any): void {
+  public createUser(formData: User): void {
+    console.log('formData.company:', formData.company);
     const user = {
       id: new Date().getTime(),
       name: formData.name,
       email: formData.email,
       website: formData.website,
       company: {
-        name: formData.companyName,
+        name: formData.company.name,
       }
     }
-
-    this.store.dispatch(UsersActions.create({user}))
+    this.store.dispatch(UsersActions.create({ user }))
   }
 
   public editUser(user: any) {
-    this.store.dispatch(UsersActions.edit({user}))
+    this.store.dispatch(UsersActions.edit({ user }))
   }
 }

@@ -17,7 +17,9 @@ export class CreateUserFormComponent {
     name: new FormControl('', [Validators.required, Validators.minLength(6)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     website: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    companyName: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    company: new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    })
   })
 
   public submitForm(): void{
