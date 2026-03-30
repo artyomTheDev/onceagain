@@ -5,7 +5,7 @@ import {User} from "./users-list/user.interface";
 
 @Injectable({providedIn: 'root'})
 export class UsersApiService{
-private apiService = inject(HttpClient);
+private apiService: HttpClient = inject(HttpClient);
 
   getUsers(): Observable<User[]>{
       return this.apiService.get<User[]>('https://jsonplaceholder.typicode.com/users');
