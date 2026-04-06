@@ -4,8 +4,8 @@ import { MatButton } from "@angular/material/button";
 import { LoginResult } from "./login-result.interface";
 import {MatInput} from "@angular/material/input";
 import { FormsModule } from "@angular/forms";
-import {ShadowBoxDirective} from "../directives/shadow-box.directive";
-import {RedDirective} from "../directives/red.directive";
+import { ShadowBoxDirective } from "../directives/shadow-box.directive";
+import { RedDirective } from "../directives/red.directive";
 
 @Component({
   selector: 'app-login-dialog',

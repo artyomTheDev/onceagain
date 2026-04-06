@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {NgIf} from "@angular/common";
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { NgIf } from "@angular/common";
+import { CreateUserPayload } from "./create-user-payload.interface";
 
 @Component({
   selector: 'app-create-user-form',
@@ -11,7 +12,7 @@ import {NgIf} from "@angular/common";
 })
 export class CreateUserFormComponent {
   @Output()
-  createUser = new EventEmitter
+  createUser = new EventEmitter<CreateUserPayload>();
 
   public form = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -24,6 +25,7 @@ export class CreateUserFormComponent {
 
   public submitForm(): void{
     this.createUser.emit(this.form.value)
+    console.log('full form value:', this.form.value)
     this.form.reset()
     }
 }

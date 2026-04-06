@@ -15,13 +15,13 @@ export class ShadowCartDirective {
 
 
   @HostListener('mouseenter')
-  enter() {
+  enter(): void {
     this.color = 'orange'
     console.log('желтый')
   }
 
   @HostListener('mouseleave')
-  leave() {
+  leave(): void {
     this.color = '#4b565e'
     console.log('снова серый')
   }

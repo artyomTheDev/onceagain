@@ -1,8 +1,8 @@
-import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {inject, Injectable} from "@angular/core";
-import {TodosApiService} from "../../todos-api.service";
-import {TodosActions} from "./todos.actions";
-import {catchError, map, of, switchMap} from "rxjs";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { inject, Injectable } from "@angular/core";
+import { TodosApiService } from "../../todos-api.service";
+import { TodosActions } from "./todos.actions";
+import { catchError, map, of, switchMap } from "rxjs";
 
 @Injectable()
 export class TodosEffects {

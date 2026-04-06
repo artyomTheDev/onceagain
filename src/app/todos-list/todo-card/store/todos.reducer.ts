@@ -1,7 +1,6 @@
-import {Todo} from "../../todos-list.component";
-import {createReducer, on} from "@ngrx/store";
-import {TodosActions} from "./todos.actions";
-import {state} from "@angular/animations";
+import { Todo } from "../../todos-list.component";
+import { createReducer, on } from "@ngrx/store";
+import { TodosActions } from "./todos.actions";
 
 const TODOS_STATUS = {
   idle: 'idle',
@@ -11,7 +10,7 @@ const TODOS_STATUS = {
 } as const;
 
 type TodosStatus = typeof TODOS_STATUS[keyof typeof TODOS_STATUS]
-type TodosState = {entities: Todo[]; status: TodosStatus; error: string | null}
+type TodosState = { entities: Todo[]; status: TodosStatus; error: string | null }
 
 const initialState: TodosState = {
   entities: [],

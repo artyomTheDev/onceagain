@@ -1,10 +1,10 @@
-import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
-import {EditTodoDialogComponent} from "../edit-todo-dialog/edit-todo-dialog.component";
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { MatDialog } from "@angular/material/dialog";
+import { EditTodoDialogComponent } from "../edit-todo-dialog/edit-todo-dialog.component";
+import { SliceTextPipe } from "../../pipes/slice-text.pipe";
+import { AuthService } from "../../auth/auth.service";
+import { AsyncPipe, NgIf } from "@angular/common";
 import {Todo} from "../todos-list.component";
-import {SliceTextPipe} from "../../pipes/slice-text.pipe";
-import {AuthService} from "../../auth/auth.service";
-import {AsyncPipe, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-todo-card',
@@ -29,7 +29,7 @@ export class TodoCardComponent {
   deleteTodo = new EventEmitter<number>();
 
   @Output()
-  editTodo = new EventEmitter<any>();
+  editTodo = new EventEmitter<Todo>();
 
   @Output()
   toggle = new EventEmitter<number>;

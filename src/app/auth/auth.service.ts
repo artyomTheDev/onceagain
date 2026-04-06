@@ -1,33 +1,34 @@
-import {inject, Injectable} from "@angular/core";
-import {BehaviorSubject} from "rxjs";
-import {AuthUser} from "./auth-user.interface";
-import {LoginResult} from "../login-dialog/login-result.interface";
-import {Router} from "@angular/router";
+import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
+import { AuthUser } from "./auth-user.interface";
+import { LoginResult } from "../login-dialog/login-result.interface";
+import { Router } from "@angular/router";
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 
 export class AuthService {
   private currentUser$: BehaviorSubject<AuthUser | null> = new BehaviorSubject<AuthUser | null>(null);
   public user$ = this.currentUser$.asObservable();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+  }
 
-  public login(data: LoginResult):void {
+  public login(data: LoginResult): void {
     this.currentUser$.next({
-      role: data.role ,
+      role: data.role,
       displayName: data.displayName
     })
   }
 
-  loginAsAdmin():void {
-    this.currentUser$.next({ role: "admin" })
+  loginAsAdmin(): void {
+    this.currentUser$.next({role: "admin"})
   }
 
-  loginAsUser():void {
-    this.currentUser$.next({ role: "user" })
+  loginAsUser(): void {
+    this.currentUser$.next({role: "user"})
   }
 
-  logout():void {
+  logout(): void {
     this.currentUser$.next(null);
     this.router.navigate(['/']);
   }

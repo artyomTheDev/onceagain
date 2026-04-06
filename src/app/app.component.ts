@@ -1,13 +1,13 @@
-import {Component, HostBinding, inject} from '@angular/core';
-import {AsyncPipe, DatePipe, NgIf} from "@angular/common";
-import {RouterLink, RouterOutlet} from "@angular/router";
-import {ShadowCartDirective} from "./directives/shadow-cart.directive";
-import {MatDialog} from "@angular/material/dialog";
-import {LoginDialogComponent} from "./login-dialog/login-dialog.component";
-import {MatButton} from "@angular/material/button";
-import {AuthService} from "./auth/auth.service";
-import {LoginResult} from "./login-dialog/login-result.interface";
-import {tap} from "rxjs";
+import { Component, HostBinding, inject } from '@angular/core';
+import { AsyncPipe, DatePipe, NgIf } from "@angular/common";
+import { RouterLink, RouterOutlet } from "@angular/router";
+import { ShadowCartDirective } from "./directives/shadow-cart.directive";
+import { MatDialog } from "@angular/material/dialog";
+import { LoginDialogComponent } from "./login-dialog/login-dialog.component";
+import { MatButton } from "@angular/material/button";
+import { AuthService } from "./auth/auth.service";
+import { LoginResult } from "./login-dialog/login-result.interface";
+import { tap } from "rxjs";
 
 @Component({
   selector: 'app-root',

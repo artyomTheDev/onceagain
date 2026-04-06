@@ -1,5 +1,5 @@
-import {Component} from "@angular/core";
-import {NgForOf, NgIf} from "@angular/common";
+import { Component } from "@angular/core";
+import { NgIf } from "@angular/common";
 
 @Component({
   selector: 'main-page',

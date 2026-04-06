@@ -1,9 +1,8 @@
-import {Component, EventEmitter, inject, Output} from '@angular/core';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatButtonModule} from "@angular/material/button";
-import {MatFormField, MatInput, MatLabel} from "@angular/material/input";
-import {MatOption, MatSelect} from "@angular/material/select";
-import {AuthService} from "../auth/auth.service";
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
+import { MatFormField, MatInput, MatLabel } from "@angular/material/input";
+import { MatOption, MatSelect } from "@angular/material/select";
 
 @Component({
   selector: 'app-create-todo-form',
@@ -23,7 +22,7 @@ import {AuthService} from "../auth/auth.service";
 })
 export class CreateTodoFormComponent {
 @Output()
-  public createTodo = new EventEmitter<any>();
+  public createTodo = new EventEmitter();
 
   public todoForm = new FormGroup({
     userId: new FormControl(),

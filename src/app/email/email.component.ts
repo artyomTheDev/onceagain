@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {NgForOf} from "@angular/common";
-import {NotificationsComponent} from "./notifications/notifications.component";
+import { NgForOf } from "@angular/common";
+import { NotificationsComponent } from "./notifications/notifications.component";
 
 @Component({
   selector: 'app-email',
@@ -20,7 +20,7 @@ export class EmailComponent {
     { id: 3, text: 'Оплата прошла', unread: true }
   ];
 
-  readMessage(notificationId: number) {
+  readMessage(notificationId: number): void {
     this.notifications = this.notifications.map( notification => {
       if (notification.id === notificationId) {
         return { ...notification, unread: false}

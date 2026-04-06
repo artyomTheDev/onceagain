@@ -1,4 +1,4 @@
-import {Directive, HostBinding, HostListener} from "@angular/core";
+import { Directive, HostBinding, HostListener } from "@angular/core";
 
 @Directive({
   selector: "[brown]",
@@ -20,13 +20,13 @@ export class RedDirective {
   }
 
   @HostListener('mouseenter')
-  enter() {
+  enter(): void {
     this.color = 'brown';
     this.textTransform = 'uppercase'
   }
 
   @HostListener('mouseleave')
-  leave() {
+  leave(): void {
     this.color = 'white';
     this.textTransform = 'lowercase'
   }
