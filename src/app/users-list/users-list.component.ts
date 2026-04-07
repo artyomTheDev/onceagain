@@ -8,6 +8,7 @@ import { Store } from "@ngrx/store";
 import { UsersActions } from "./store/users.actions";
 import { selectUsersEntities } from "./store/user.selectors";
 import { User } from "./user.interface";
+import { CreateUserPayload } from "../create-user-form/create-user-payload.interface";
 
 @Component({
   selector: 'app-users-list',
@@ -41,9 +42,9 @@ export class UsersListComponent {
     this.store.dispatch(UsersActions.delete({ id }))
   }
 
-  public createUser(formData: User): void {
+  public createUser(formData: CreateUserPayload): void {
     console.log('formData.company:', formData.company);
-    const user = {
+    const user: User = {
       id: new Date().getTime(),
       name: formData.name,
       email: formData.email,

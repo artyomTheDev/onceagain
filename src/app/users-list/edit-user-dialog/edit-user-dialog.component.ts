@@ -1,8 +1,8 @@
-import {Component, inject} from "@angular/core";
-import {MAT_DIALOG_DATA, MatDialogClose, MatDialogRef} from "@angular/material/dialog";
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {NgIf} from "@angular/common";
-import {User} from "../user.interface";
+import { Component, inject } from "@angular/core";
+import { MAT_DIALOG_DATA, MatDialogClose, MatDialogRef } from "@angular/material/dialog";
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { NgIf } from "@angular/common";
+import { User } from "../user.interface";
 
 @Component({
   selector: "app-edit-user-dialog",
@@ -18,7 +18,7 @@ import {User} from "../user.interface";
 })
 
 export class EditUserDialogComponent {
-  readonly data = inject<{user: User}>(MAT_DIALOG_DATA);
+  readonly data = inject<{ user: User }>(MAT_DIALOG_DATA);
   readonly dialogRef = inject(MatDialogRef<EditUserDialogComponent>)
 
 
@@ -33,7 +33,7 @@ export class EditUserDialogComponent {
       )
     })
   })
-  submitForm():void {
+  submitForm(): void {
     this.dialogRef.close(this.userWithUpdatedFields)
     console.log(this.userWithUpdatedFields)
   }

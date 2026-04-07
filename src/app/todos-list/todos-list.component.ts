@@ -1,12 +1,12 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
-import {TodosApiService} from "./todos-api.service";
-import {TodoCardComponent} from "./todo-card/todo-card.component";
-import {CreateTodoFormComponent} from "../create-todo-form/create-todo-form.component";
-import {AuthService} from "../auth/auth.service";
-import {Store} from "@ngrx/store";
-import {TodosActions} from "./todo-card/store/todos.actions";
-import {selectTodosEntities} from "./todo-card/store/todos.selectors";
+import { Component, inject, OnInit } from '@angular/core';
+import { AsyncPipe, NgForOf, NgIf } from "@angular/common";
+import { TodosApiService } from "./todos-api.service";
+import { TodoCardComponent } from "./todo-card/todo-card.component";
+import { CreateTodoFormComponent } from "../create-todo-form/create-todo-form.component";
+import { AuthService } from "../auth/auth.service";
+import { Store } from "@ngrx/store";
+import { TodosActions } from "./todo-card/store/todos.actions";
+import { selectTodosEntities } from "./todo-card/store/todos.selectors";
 
 export interface Todo {
   userId: number,
@@ -46,7 +46,7 @@ export class TodosListComponent implements OnInit{
     this.store.dispatch(TodosActions.load())
   }
 
-  public deleteTodo(id: number):void {
+  public deleteTodo(id: number): void {
     this.store.dispatch(TodosActions.delete({ id }))
   }
 

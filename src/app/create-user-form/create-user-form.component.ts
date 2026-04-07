@@ -15,16 +15,29 @@ export class CreateUserFormComponent {
   createUser = new EventEmitter<CreateUserPayload>();
 
   public form = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    website: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    name: new FormControl('',
+      {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(6)]
+      }),
+    email: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.email]
+    }),
+    website: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(6)]
+    }),
     company: new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      name: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.minLength(6)]
+      }),
     })
   })
 
   public submitForm(): void{
-    this.createUser.emit(this.form.value)
+    this.createUser.emit(this.form.getRawValue())
     console.log('full form value:', this.form.value)
     this.form.reset()
     }

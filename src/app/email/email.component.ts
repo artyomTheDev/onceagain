@@ -23,7 +23,7 @@ export class EmailComponent {
   readMessage(notificationId: number): void {
     this.notifications = this.notifications.map( notification => {
       if (notification.id === notificationId) {
-        return { ...notification, unread: false}
+        return { ...notification, unread: false }
       }
       return notification
     }

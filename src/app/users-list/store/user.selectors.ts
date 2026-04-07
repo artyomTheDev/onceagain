@@ -1,5 +1,5 @@
-import {User} from "../user.interface";
-import {createFeatureSelector, createSelector} from "@ngrx/store";
+import { User } from "../user.interface";
+import { createFeatureSelector, createSelector } from "@ngrx/store";
 
 type UsersState = { entities: User[]}
 

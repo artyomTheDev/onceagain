@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-notifications',
@@ -9,10 +9,10 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 })
 export class NotificationsComponent {
   @Input()
-  notification:any
+  notification: any
 
   @Output()
-  readMessage = new EventEmitter
+  readMessage = new EventEmitter();
 
   onButtonClick() {
   this.readMessage.emit(this.notification.id)

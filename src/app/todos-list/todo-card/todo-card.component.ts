@@ -4,7 +4,7 @@ import { EditTodoDialogComponent } from "../edit-todo-dialog/edit-todo-dialog.co
 import { SliceTextPipe } from "../../pipes/slice-text.pipe";
 import { AuthService } from "../../auth/auth.service";
 import { AsyncPipe, NgIf } from "@angular/common";
-import {Todo} from "../todos-list.component";
+import { Todo } from "../todos-list.component";
 
 @Component({
   selector: 'app-todo-card',

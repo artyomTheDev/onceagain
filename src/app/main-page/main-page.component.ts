@@ -12,5 +12,5 @@ import { NgIf } from "@angular/common";
 })
 
 export class MainPageComponent{
-  isShowBanner:boolean = true;
+  isShowBanner: boolean = true;
 }
