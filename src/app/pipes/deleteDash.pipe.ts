@@ -1,4 +1,4 @@
-import {Pipe, PipeTransform} from "@angular/core";
+import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
   name: 'deleteDash',
@@ -6,7 +6,7 @@ import {Pipe, PipeTransform} from "@angular/core";
 })
 
 export class DeleteDashPipe implements PipeTransform {
-  transform(phoneNumber: any): any {
+  transform(phoneNumber: any): void {
     let newArray = phoneNumber.split('')
     return newArray.filter((item: any) => item !== '-').join('')
   }

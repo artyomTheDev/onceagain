@@ -3,7 +3,7 @@
     <div class="header-top">
 <div class="header-top-wrapper">
   <nav class="header-top-description">
-    <img class="logo" src="./assets/logo.svg" alt="">
+    <img class="logo" src="../assets/logo.svg" alt="">
     <a [routerLink]="['main-page']">{{ headerItem1 }}</a>
     <span>{{ aboutCompany }}</span>
     <span *ngIf="isShowCatalog">{{ headerItem3 }}</span>
@@ -24,12 +24,12 @@
   </nav>
   <div class="header-top-info">
     <div class="header-top-info-call">
-      <img class="phone" src="./assets/phone.svg" alt="">
+      <img class="phone" src="../assets/phone-icon.svg" alt="">
       <span class="number">+7 (965) 084-29-29</span>
 </div>
-    <img class="heart" src="./assets/heart.svg" alt="">
+    <img class="heart" src="../assets/heart-icon.svg" alt="">
     <button class="cart" shadow>
-      <img src="./assets/cart.svg" alt="">
+      <img src="../assets/cart-icon.svg" alt="">
       <span class="cart-text">Пусто</span>
     </button>
   </div>
@@ -41,7 +41,7 @@
 <div class="header-bottom-wrapper">
   <div class="header-bottom-text">
     <div style="display: flex; align-items: center; gap: 10px">
-      <img src="./assets/strings.svg" alt="">
+      <img src="../assets/strings-icon.svg" alt="">
       {{ menuItems[0] }}</div>
     <span>{{ menuItems[1] }}</span>
     <span>{{ menuItems[2] }}</span>
@@ -53,10 +53,10 @@
   </a>
   <div class="header-bottom-search">
     <input class="header-bottom-search-input" type="text" placeholder="Поиск, например Круг зачистной">
-    <a href="./assets/lupa.svg"></a>
+    <a href="../assets/lupa-icon.svg"></a>
   </div>
   <div class="header-bottom-location">
-    <img src="./assets/map-pin.svg" alt="">
+    <img src="../assets/map-pin-icon.svg" alt="">
     <span>Москва</span>
   </div>
 </div>

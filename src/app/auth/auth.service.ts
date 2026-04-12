@@ -1,31 +1,36 @@
-import {Injectable} from "@angular/core";
-import {BehaviorSubject} from "rxjs";
-import {AuthUser} from "./auth-user.interface";
-import {LoginResult} from "../login-dialog/login-result.interface";
+import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
+import { AuthUser } from "./auth-user.interface";
+import { LoginResult } from "../login-dialog/login-result.interface";
+import { Router } from "@angular/router";
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 
 export class AuthService {
   private currentUser$: BehaviorSubject<AuthUser | null> = new BehaviorSubject<AuthUser | null>(null);
   public user$ = this.currentUser$.asObservable();
 
-  public login(data: LoginResult):void {
+  constructor(private router: Router) {
+  }
+
+  public login(data: LoginResult): void {
     this.currentUser$.next({
-      role: data.role ,
+      role: data.role,
       displayName: data.displayName
     })
   }
 
-  loginAsAdmin():void {
+  loginAsAdmin(): void {
     this.currentUser$.next({ role: "admin" })
   }
 
-  loginAsUser():void {
+  loginAsUser(): void {
     this.currentUser$.next({ role: "user" })
   }
 
-  logout():void {
-    this.currentUser$.next(null)
+  logout(): void {
+    this.currentUser$.next(null);
+    this.router.navigate(['/']);
   }
 
   isAdmin(): boolean {

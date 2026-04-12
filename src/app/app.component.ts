@@ -1,12 +1,13 @@
-import {Component, HostBinding, inject} from '@angular/core';
-import {AsyncPipe, DatePipe, NgIf} from "@angular/common";
-import {RouterLink, RouterOutlet} from "@angular/router";
-import {ShadowCartDirective} from "./directives/shadow-cart.directive";
-import {MatDialog} from "@angular/material/dialog";
-import {LoginDialogComponent} from "./login-dialog/login-dialog.component";
-import {MatButton} from "@angular/material/button";
-import {AuthService} from "./auth/auth.service";
-import {LoginResult} from "./login-dialog/login-result.interface";
+import { Component, HostBinding, inject } from '@angular/core';
+import { AsyncPipe, DatePipe, NgIf } from "@angular/common";
+import { RouterLink, RouterOutlet } from "@angular/router";
+import { ShadowCartDirective } from "./directives/shadow-cart.directive";
+import { MatDialog } from "@angular/material/dialog";
+import { LoginDialogComponent } from "./login-dialog/login-dialog.component";
+import { MatButton } from "@angular/material/button";
+import { AuthService } from "./auth/auth.service";
+import { LoginResult } from "./login-dialog/login-result.interface";
+import { tap } from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -17,70 +18,67 @@ import {LoginResult} from "./login-dialog/login-result.interface";
 })
 
 export class AppComponent {
-  dialog = inject(MatDialog);
-  authService = inject(AuthService);
-  user$ = this.authService.user$
+  dialog = inject<MatDialog>(MatDialog);
+  authService = inject<AuthService>(AuthService);
+  user$ = this.authService.user$;
 
   title = 'mentoring-first-project';
 
   @HostBinding('class.dark-theme')
-  isDarkMode:boolean = false;
+  public isDarkMode: boolean = false;
 
-  isShowCatalog:boolean = true;
+  public isShowCatalog: boolean = true;
 
-  isUpperCase:boolean = true;
+  public isUpperCase: boolean = true;
 
-  menuItems:string[] = ['Каталог', 'Стройматериалы', 'Инструменты', 'Электрика', 'Интерьер и одежда'];
+  public menuItems: string[] = ['Каталог', 'Стройматериалы', 'Инструменты', 'Электрика', 'Интерьер и одежда'];
 
-  readonly aboutCompany:string = this.showMessage('О компании')
+  readonly aboutCompany: string = this.showMessage('О компании');
 
-  readonly headerItem1:string = 'Главная';
+  readonly headerItem1: string = 'Главная';
 
-  readonly headerItem3:string = 'Каталог';
+  readonly headerItem3: string = 'Каталог';
 
-  public counter:number = 0;
+  public counter: number = 0;
 
-  currentColorIndex:number = 0;
+  public currentColorIndex: number = 0;
 
-  colors:string[] = ['Красный', 'Жёлтый', 'Зелёный']
+  public colors: string[] = ['Красный', 'Жёлтый', 'Зелёный'];
 
-  public date:any = new Date().getTime();
+  public date: number = new Date().getTime();
 
-  showMessage(headerItem:string) {
-
-    return headerItem
-  }
-
-  changeMenuText(){
-this.menuItems = this.menuItems.map(
-  item => this.isUpperCase ? item.toLowerCase() : item.toUpperCase()
-);
-    this.isUpperCase = !this.isUpperCase
+  public showMessage(headerItem: string): string {
+    return headerItem;
   };
 
-  changeCounter(){
-    if (this.counter < 5){
+  public changeMenuText(): void {
+    this.menuItems = this.menuItems.map(
+      item => this.isUpperCase ? item.toLowerCase() : item.toUpperCase()
+    );
+    this.isUpperCase = !this.isUpperCase
+  }
+
+  public changeCounter(): void {
+    if (this.counter < 5) {
       this.counter = this.counter + 1
     } else {
       this.counter = 0;
     }
   }
-  changeColor(){
-    if (this.currentColorIndex < 2){
+
+  public changeColor(): void {
+    if (this.currentColorIndex < 2) {
       this.currentColorIndex = this.currentColorIndex + 1;
     } else {
       this.currentColorIndex = 0;
     }
-  }
-  toggleTheme(){
+  };
+
+  public toggleTheme(): void {
     this.isDarkMode = !this.isDarkMode;
-  }
+  };
 
-  currentInfoAboutUser() {
-    console.log(this.authService.user$)
-  }
-
-  openDialog(): void {
+  public openDialog(): void {
     const dialogRef = this.dialog.open(LoginDialogComponent, {
       data: {
         title: 'Выберите тип входа',
@@ -88,11 +86,10 @@ this.menuItems = this.menuItems.map(
       height: '400px',
       width: '400px'
     });
-    dialogRef.afterClosed().subscribe((result: LoginResult) => {
-      if (result) {
-        this.authService.login(result)
-        console.log(result)
-      }
-    });
-  }
+    dialogRef.afterClosed().pipe(
+      tap((result: LoginResult | undefined) => {
+        if (result) this.authService.login(result);
+      })
+    ).subscribe()
+  };
 }

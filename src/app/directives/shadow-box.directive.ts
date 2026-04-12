@@ -1,4 +1,4 @@
-import {Directive, HostBinding, HostListener} from "@angular/core";
+import { Directive, HostBinding, HostListener } from "@angular/core";
 
 @Directive({
   selector: '[shadowbox]',
@@ -14,12 +14,12 @@ export class ShadowBoxDirective {
   }
 
   @HostListener('mouseenter')
-  enter() {
+  enter(): void {
     this.shadow = '-5px 4px 3px 2px grey'
   }
 
   @HostListener('mouseleave')
-  leave() {
+  leave(): void {
     this.shadow = '0 0'
   }
 }

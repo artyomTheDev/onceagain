@@ -9,7 +9,7 @@
     <p brown>🌐 {{ user.company.name }}</p>
     <p brown> {{ user.phone | deleteDash }}</p>
   </mat-card-content>
-  <mat-card-actions>
+  <mat-card-actions *ngIf="(user$ | async)?.role === 'admin'">
     <button brown (click)= "onDeleteUser(user.id)" mat-button="elevated">Удалить пользователя</button>
     <button brown (click)= "openDialog()" mat-button="elevated">Редактировать пользователя</button>
   </mat-card-actions>

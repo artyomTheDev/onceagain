@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NotificationsInterface } from "./notifications.interface";
 
 @Component({
   selector: 'app-notifications',
@@ -8,14 +9,22 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
   styleUrl: './notifications.component.scss'
 })
 export class NotificationsComponent {
+
   @Input()
-  notification:any
+  notification!: NotificationsInterface
 
   @Output()
-  readMessage = new EventEmitter
+  readMessage: EventEmitter<number> = new EventEmitter<number>();
 
-  onButtonClick() {
+  @Output()
+  deleteMessage: EventEmitter<number> = new EventEmitter<number>();
+
+  onButtonClickRead() {
   this.readMessage.emit(this.notification.id)
+  }
+
+  onButtonClickDelete() {
+  this.deleteMessage.emit(this.notification.id)
   }
 
 }

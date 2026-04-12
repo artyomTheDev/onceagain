@@ -1,30 +1,42 @@
-import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
-import {EditTodoDialogComponent} from "../edit-todo-dialog/edit-todo-dialog.component";
-import {Todo} from "../todos-list.component";
-import {SliceTextPipe} from "../../pipes/slice-text.pipe";
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { MatDialog } from "@angular/material/dialog";
+import { EditTodoDialogComponent } from "../edit-todo-dialog/edit-todo-dialog.component";
+import { SliceTextPipe } from "../../pipes/slice-text.pipe";
+import { AuthService } from "../../auth/auth.service";
+import { AsyncPipe, NgIf } from "@angular/common";
+import { Todo } from "../todos-list.component";
 
 @Component({
   selector: 'app-todo-card',
   standalone: true,
   imports: [
-    SliceTextPipe
+    SliceTextPipe,
+    NgIf,
+    AsyncPipe
   ],
   templateUrl: './todo-card.component.html',
   styleUrl: './todo-card.component.scss'
 })
 
 export class TodoCardComponent {
-  readonly dialog = inject(MatDialog);
+  readonly dialog: MatDialog = inject(MatDialog);
+  readonly user$ = inject(AuthService).user$
 
   @Input()
-  todo: any;
+  todo!: Todo;
 
   @Output()
-  deleteTodo = new EventEmitter<number>();
+  deleteTodo: EventEmitter<number> = new EventEmitter<number>();
 
   @Output()
-  editTodo = new EventEmitter<any>();
+  editTodo: EventEmitter<Todo> = new EventEmitter<Todo>();
+
+  @Output()
+  toggle: EventEmitter<number> = new EventEmitter<number>;
+
+  toggleTodo() {
+    this.toggle.emit(this.todo.id)
+  }
 
   onDeleteTodo(todoId: number) {
     this.deleteTodo.emit(todoId);

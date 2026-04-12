@@ -1,13 +1,17 @@
-import {Component, inject} from '@angular/core';
-import {AsyncPipe, NgForOf} from "@angular/common";
-import {TodosApiService} from "./todos-api.service";
-import {TodoCardComponent} from "./todo-card/todo-card.component";
-import {TodosService} from "./todos.service";
-import {CreateTodoFormComponent} from "../create-todo-form/create-todo-form.component";
+import { Component, inject } from '@angular/core';
+import { AsyncPipe, NgForOf, NgIf } from "@angular/common";
+import { TodosApiService } from "./todos-api.service";
+import { TodoCardComponent } from "./todo-card/todo-card.component";
+import { CreateTodoFormComponent } from "../create-todo-form/create-todo-form.component";
+import { AuthService } from "../auth/auth.service";
+import { Store } from "@ngrx/store";
+import { TodosActions } from "./todo-card/store/todos.actions";
+import { selectTodosEntities } from "./todo-card/store/todos.selectors";
+import { CreateTodoPayload } from "../create-todo-form/create-todo-payload.interface";
 
 export interface Todo {
   userId: number,
-  id?: number,
+  id: number,
   title: string,
   completed: boolean
 }
@@ -20,6 +24,7 @@ export interface Todo {
     TodoCardComponent,
     AsyncPipe,
     CreateTodoFormComponent,
+    NgIf,
   ],
   templateUrl: './todos-list.component.html',
   styleUrl: './todos-list.component.scss'
@@ -27,32 +32,31 @@ export interface Todo {
 
 export class TodosListComponent {
   readonly TodosApiService = inject(TodosApiService);
-  readonly TodosService = inject(TodosService);
+  readonly user$ = inject(AuthService).user$
+  private store = inject(Store);
+  protected todos$ = this.store.select(selectTodosEntities)
 
   constructor() {
 
     this.TodosApiService.getTodos().subscribe(
-      (response: any) => {
-        this.TodosService.setTodos(response)
-      }
+      (response: Todo[]) => this.store.dispatch(TodosActions.set({ todos: response }))
     )
   }
 
-  public deleteTodo(todoIdToDelete: number):void {
-    this.TodosService.deleteTodo(todoIdToDelete)
+  public deleteTodo(id: number): void {
+    this.store.dispatch(TodosActions.delete({ id }))
   }
 
-  public createTodo(formData: any) {
-    console.log(this.TodosService.todos$)
-    this.TodosService.createTodo({
-      userId: formData.userId,
-      id: new Date().getTime(),
-      title: formData.title,
-      completed: formData.completed,
-    })
+  public createTodo(formData: CreateTodoPayload) {
+      const todo: Todo = { ...formData, id: new Date().getTime() };
+    this.store.dispatch(TodosActions.create({ todo }))
   }
-  public editTodo(editedTodoData : any) {
-    console.log(editedTodoData)
-    this.TodosService.editTodo(editedTodoData)
+
+  public editTodo(todo : Todo) {
+    this.store.dispatch(TodosActions.edit({ todo }))
+  }
+
+  public toggleTodo(id: number) {
+    this.store.dispatch(TodosActions.toggle({ id }))
   }
 }

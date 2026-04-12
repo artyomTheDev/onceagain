@@ -23,11 +23,13 @@
         Тут ошибочка вышла
       </div>
     </div>
-    <p>Название компании:</p>
-    <input formControlName="companyName" type="text">
-    <div *ngIf="form.controls['companyName'].invalid && (form.controls['companyName'].dirty || form.controls['companyName'].touched)" class="alert">
-      <div *ngIf="form.controls['companyName'].errors">
-        Тут ошибочка вышла
+    <div formGroupName="company">
+      <p>Название компании:</p>
+      <input formControlName="name" type="text">
+      <div *ngIf="form.controls['name'].invalid && (form.controls['name'].dirty || form.controls['name'].touched)" class="alert">
+        <div *ngIf="form.controls['name'].errors">
+          Тут ошибочка вышла
+        </div>
       </div>
     </div>
     <button type="submit" [disabled]="form.invalid">Создать пользователя</button>
