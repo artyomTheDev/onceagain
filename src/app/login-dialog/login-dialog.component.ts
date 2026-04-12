@@ -2,7 +2,7 @@ import { Component, inject } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatButton } from "@angular/material/button";
 import { LoginResult } from "./login-result.interface";
-import {MatInput} from "@angular/material/input";
+import { MatInput } from "@angular/material/input";
 import { FormsModule } from "@angular/forms";
 import { ShadowBoxDirective } from "../directives/shadow-box.directive";
 import { RedDirective } from "../directives/red.directive";

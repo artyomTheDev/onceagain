@@ -9,6 +9,7 @@ import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle } 
 import { ShadowBoxDirective } from "../../directives/shadow-box.directive";
 import { AuthService } from "../../auth/auth.service";
 import { AsyncPipe, NgIf } from "@angular/common";
+import { User } from "../user.interface";
 
 @Component({
   selector: 'app-user-card',
@@ -19,15 +20,15 @@ import { AsyncPipe, NgIf } from "@angular/common";
 })
 export class UserCardComponent {
   @Input()
-  user: any
+  user!: User
 
   @Output()
-  deleteUser = new EventEmitter<number>();
+  deleteUser: EventEmitter<number> = new EventEmitter<number>();
 
   @Output()
-  editUser = new EventEmitter<any>();
+  editUser: EventEmitter<User> = new EventEmitter<User>();
 
-  readonly dialog = inject(MatDialog);
+  readonly dialog: MatDialog = inject(MatDialog);
   readonly user$ = inject(AuthService).user$
 
   openDialog(): void {

@@ -6,6 +6,7 @@ import { MatInput } from "@angular/material/input";
 import { MatOption } from "@angular/material/core";
 import { MatSelect } from "@angular/material/select";
 import { MAT_DIALOG_DATA, MatDialogClose, MatDialogRef } from "@angular/material/dialog";
+import { Todo } from "../todos-list.component";
 
 @Component({
   selector: 'app-edit-todo-dialog',
@@ -30,9 +31,15 @@ export class EditTodoDialogComponent{
   readonly data = inject(MAT_DIALOG_DATA);
 
   editTodoForm = new FormGroup({
-    userId: new FormControl(this.data.todo.userId),
-    title: new FormControl(this.data.todo.title),
-    completed: new FormControl(this.data.todo.completed),
+    userId: new FormControl(this.data.todo.userId, {
+      nonNullable: true,
+    }),
+    title: new FormControl(this.data.todo.title, {
+      nonNullable: true,
+    }),
+    completed: new FormControl(this.data.todo.completed, {
+      nonNullable: true,
+    }),
   })
 
   submitForm(): void {
@@ -40,9 +47,9 @@ export class EditTodoDialogComponent{
     this.dialogRef.close(this.todoWithUpdatedFields)
   }
 
-  get todoWithUpdatedFields() {
+  get todoWithUpdatedFields(): Todo {
     return {
-      ...this.editTodoForm.value,
+      ...this.editTodoForm.getRawValue(),
       id: this.data.todo.id
     }
   }

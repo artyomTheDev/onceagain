@@ -23,24 +23,39 @@ export class EditUserDialogComponent {
 
 
   editUserForm = new FormGroup({
-    name: new FormControl(this.data.user.name, [Validators.required, Validators.minLength(4)]),
-    email: new FormControl(this.data.user.email, [Validators.required, Validators.email]),
-    website: new FormControl(this.data.user.website, [Validators.required, Validators.minLength(4)]),
+    name: new FormControl(this.data.user.name, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(4)]
+    }),
+    email: new FormControl(this.data.user.email, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.email
+      ]
+    }),
+    website: new FormControl(this.data.user.website, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.minLength(4)
+      ]
+    }),
     company: new FormGroup({
       name: new FormControl(
         this.data.user?.company?.name || '',
-        [Validators.required]
+        {
+          nonNullable: true,
+          validators: [Validators.required]
+        }
       )
     })
   })
+
   submitForm(): void {
     this.dialogRef.close(this.userWithUpdatedFields)
     console.log(this.userWithUpdatedFields)
   }
 
-  get userWithUpdatedFields() {
+  get userWithUpdatedFields(): User {
     return {
-      ...this.editUserForm.value,
+      ...this.editUserForm.getRawValue(),
       id: this.data.user.id,
       phone: this.data.user.phone,
     }

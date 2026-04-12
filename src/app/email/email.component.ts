@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForOf } from "@angular/common";
 import { NotificationsComponent } from "./notifications/notifications.component";
+import { NotificationsInterface } from "./notifications/notifications.interface";
 
 @Component({
   selector: 'app-email',
@@ -14,7 +15,7 @@ import { NotificationsComponent } from "./notifications/notifications.component"
 })
 export class EmailComponent {
 
-  notifications = [
+  notifications: NotificationsInterface[] = [
     { id: 1, text: 'Новое сообщение', unread: true },
     { id: 2, text: 'Задача просрочена', unread: true },
     { id: 3, text: 'Оплата прошла', unread: true }
@@ -27,6 +28,13 @@ export class EmailComponent {
       }
       return notification
     }
+    )
+  }
+
+  deleteMessage(notificationId: number): void {
+    this.notifications = this.notifications.filter( notification => {
+      return notification.id !== notificationId
+      }
     )
   }
 }

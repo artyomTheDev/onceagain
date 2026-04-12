@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from "@angul
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormField, MatInput, MatLabel } from "@angular/material/input";
 import { MatOption, MatSelect } from "@angular/material/select";
+import { CreateTodoPayload } from "./create-todo-payload.interface";
 
 @Component({
   selector: 'app-create-todo-form',
@@ -22,7 +23,7 @@ import { MatOption, MatSelect } from "@angular/material/select";
 })
 export class CreateTodoFormComponent {
 @Output()
-  public createTodo = new EventEmitter();
+  public createTodo: EventEmitter<CreateTodoPayload> = new EventEmitter<CreateTodoPayload>();
 
   public todoForm = new FormGroup({
     userId: new FormControl(),
@@ -31,7 +32,7 @@ export class CreateTodoFormComponent {
   })
 
   submitForm() {
-this.createTodo.emit(this.todoForm.value)
+this.createTodo.emit(this.todoForm.getRawValue())
     this.todoForm.reset()
   }
 }

@@ -1,25 +1,25 @@
-import {ApplicationConfig} from '@angular/core';
-import {provideRouter} from '@angular/router';
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 
-import {routes} from './app.routes';
-import {provideHttpClient} from "@angular/common/http";
-import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
-import {provideStore} from '@ngrx/store';
+import { routes } from './app.routes';
+import { provideHttpClient } from "@angular/common/http";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideStore } from '@ngrx/store';
 import { usersReducer } from "./users-list/store/user.reducer";
 import { todosReducer } from "./todos-list/todo-card/store/todos.reducer";
-import {provideEffects} from "@ngrx/effects";
-import {TodosEffects} from "./todos-list/todo-card/store/todos.effects";
+import { provideEffects } from "@ngrx/effects";
+import { TodosEffects } from "./todos-list/todo-card/store/todos.effects";
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes),
-    provideHttpClient(),
-    provideAnimationsAsync(),
-    provideStore({
-      users: usersReducer,
-      todos: todosReducer,
-    }),
-    provideEffects(TodosEffects),
-  provideStoreDevtools({ maxAge:25 })
-  ],
+    providers: [provideRouter(routes),
+        provideHttpClient(),
+        provideAnimationsAsync(),
+        provideStore({
+            users: usersReducer,
+            todos: todosReducer,
+        }),
+        provideEffects(TodosEffects),
+        provideStoreDevtools({maxAge: 25})
+    ],
 };

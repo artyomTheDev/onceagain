@@ -21,11 +21,11 @@ export class AuthService {
   }
 
   loginAsAdmin(): void {
-    this.currentUser$.next({role: "admin"})
+    this.currentUser$.next({ role: "admin" })
   }
 
   loginAsUser(): void {
-    this.currentUser$.next({role: "user"})
+    this.currentUser$.next({ role: "user" })
   }
 
   logout(): void {

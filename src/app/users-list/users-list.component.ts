@@ -56,7 +56,7 @@ export class UsersListComponent {
     this.store.dispatch(UsersActions.create({ user }))
   }
 
-  public editUser(user: any) {
+  public editUser(user: User) {
     this.store.dispatch(UsersActions.edit({ user }))
   }
 }

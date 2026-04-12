@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AsyncPipe, NgForOf, NgIf } from "@angular/common";
 import { TodosApiService } from "./todos-api.service";
 import { TodoCardComponent } from "./todo-card/todo-card.component";
@@ -7,10 +7,11 @@ import { AuthService } from "../auth/auth.service";
 import { Store } from "@ngrx/store";
 import { TodosActions } from "./todo-card/store/todos.actions";
 import { selectTodosEntities } from "./todo-card/store/todos.selectors";
+import { CreateTodoPayload } from "../create-todo-form/create-todo-payload.interface";
 
 export interface Todo {
   userId: number,
-  id?: number,
+  id: number,
   title: string,
   completed: boolean
 }
@@ -29,7 +30,7 @@ export interface Todo {
   styleUrl: './todos-list.component.scss'
 })
 
-export class TodosListComponent implements OnInit{
+export class TodosListComponent {
   readonly TodosApiService = inject(TodosApiService);
   readonly user$ = inject(AuthService).user$
   private store = inject(Store);
@@ -38,23 +39,21 @@ export class TodosListComponent implements OnInit{
   constructor() {
 
     this.TodosApiService.getTodos().subscribe(
-      (response: any) => this.store.dispatch(TodosActions.set({ todos: response }))
+      (response: Todo[]) => this.store.dispatch(TodosActions.set({ todos: response }))
     )
-  }
-
-  ngOnInit() {
-    this.store.dispatch(TodosActions.load())
   }
 
   public deleteTodo(id: number): void {
     this.store.dispatch(TodosActions.delete({ id }))
   }
 
-  public createTodo(formData: any) {
-    this.store.dispatch(TodosActions.create({ todo: formData }))
+  public createTodo(formData: CreateTodoPayload) {
+      const todo: Todo = { ...formData, id: new Date().getTime() };
+    this.store.dispatch(TodosActions.create({ todo }))
   }
+
   public editTodo(todo : Todo) {
-    this.store.dispatch(TodosActions.edit({todo}))
+    this.store.dispatch(TodosActions.edit({ todo }))
   }
 
   public toggleTodo(id: number) {

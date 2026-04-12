@@ -19,20 +19,20 @@ import { Todo } from "../todos-list.component";
 })
 
 export class TodoCardComponent {
-  readonly dialog = inject(MatDialog);
+  readonly dialog: MatDialog = inject(MatDialog);
   readonly user$ = inject(AuthService).user$
 
   @Input()
-  todo: any;
+  todo!: Todo;
 
   @Output()
-  deleteTodo = new EventEmitter<number>();
+  deleteTodo: EventEmitter<number> = new EventEmitter<number>();
 
   @Output()
-  editTodo = new EventEmitter<Todo>();
+  editTodo: EventEmitter<Todo> = new EventEmitter<Todo>();
 
   @Output()
-  toggle = new EventEmitter<number>;
+  toggle: EventEmitter<number> = new EventEmitter<number>;
 
   toggleTodo() {
     this.toggle.emit(this.todo.id)
